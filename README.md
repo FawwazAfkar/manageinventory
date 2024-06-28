@@ -11,4 +11,7 @@
 
 Sebuah sistem manajemen inventaris berbasis web menggunakan framework Laravel. Sistem ini akan mencakup fitur untuk mengelola data barang, supplier, penerimaan, dan kategori. Selain itu, sistem akan memiliki fitur login untuk memastikan hanya pengguna yang terautentikasi yang dapat mengakses dan mengelola data.
 
-
+<ul>
+    <li>Nama    : Fawwaz Afkar Muzakky</li>
+    <li>NIM     : H1D022067</li>
+</ul>
