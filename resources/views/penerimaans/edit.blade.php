@@ -7,10 +7,10 @@
         @csrf
         @method('PUT')
         <div class="form-group">
-            <label for="barang_id">Barang</label>
-            <select class="form-control" id="barang_id" name="barang_id" required>
+            <label for="id_barang">Barang</label>
+            <select class="form-control" id="id_barang" name="id_barang" required>
                 @foreach($barangs as $barang)
-                    <option value="{{ $barang->id }}" @if($penerimaan->barang_id == $barang->id) selected @endif>{{ $barang->nama }}</option>
+                    <option value="{{ $barang->id }}" @if($penerimaan->id_barang == $barang->id) selected @endif>{{ $barang->nama }}</option>
                 @endforeach
             </select>
         </div>

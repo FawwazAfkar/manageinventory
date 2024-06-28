@@ -22,16 +22,16 @@
             <input type="number" step="0.01" class="form-control" id="harga" name="harga" required>
         </div>
         <div class="form-group">
-            <label for="kategori_id">Kategori</label>
-            <select class="form-control" id="kategori_id" name="kategori_id" required>
+            <label for="id_kategori">Kategori</label>
+            <select class="form-control" id="id_kategori" name="id_kategori" required>
                 @foreach($kategoris as $kategori)
                     <option value="{{ $kategori->id }}">{{ $kategori->nama }}</option>
                 @endforeach
             </select>
         </div>
         <div class="form-group">
-            <label for="supplier_id">Supplier</label>
-            <select class="form-control" id="supplier_id" name="supplier_id" required>
+            <label for="id_supplier">Supplier</label>
+            <select class="form-control" id="id_supplier" name="id_supplier" required>
                 @foreach($suppliers as $supplier)
                     <option value="{{ $supplier->id }}">{{ $supplier->nama }}</option>
                 @endforeach

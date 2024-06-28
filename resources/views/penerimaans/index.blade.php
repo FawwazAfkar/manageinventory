@@ -16,7 +16,7 @@
         <tbody>
             @foreach($penerimaans as $penerimaan)
                 <tr>
-                    <td>{{ $penerimaan->barang->nama }}</td>
+                    <td>{{ $penerimaan->nama_barang }}</td>
                     <td>{{ $penerimaan->jumlah }}</td>
                     <td>{{ $penerimaan->tanggal }}</td>
                     <td>

@@ -10,12 +10,12 @@ class SupplierController extends Controller
     public function index()
     {
         $suppliers = Supplier::all();
-        return view('supplier.index', compact('suppliers'));
+        return view('suppliers.index', compact('suppliers'));
     }
 
     public function create()
     {
-        return view('supplier.create');
+        return view('suppliers.create');
     }
 
     public function store(Request $request)
@@ -27,17 +27,12 @@ class SupplierController extends Controller
         ]);
 
         Supplier::create($validated);
-        return redirect()->route('supplier.index');
-    }
-
-    public function show(Supplier $supplier)
-    {
-        return view('supplier.show', compact('supplier'));
+        return redirect()->route('suppliers.index')->with('success', 'Supplier berhasil ditambahkan.');
     }
 
     public function edit(Supplier $supplier)
     {
-        return view('supplier.edit', compact('supplier'));
+        return view('suppliers.edit', compact('supplier'));
     }
 
     public function update(Request $request, Supplier $supplier)
@@ -49,12 +44,12 @@ class SupplierController extends Controller
         ]);
 
         $supplier->update($validated);
-        return redirect()->route('supplier.index');
+        return redirect()->route('suppliers.index')->with('success', 'Supplier berhasil diubah.');;;
     }
 
     public function destroy(Supplier $supplier)
     {
         $supplier->delete();
-        return redirect()->route('supplier.index');
+        return redirect()->route('suppliers.index')->with('success', 'Supplier berhasil dihapus.');;;
     }
 }

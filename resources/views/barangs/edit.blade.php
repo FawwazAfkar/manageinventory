@@ -23,18 +23,18 @@
             <input type="number" step="0.01" class="form-control" id="harga" name="harga" value="{{ $barang->harga }}" required>
         </div>
         <div class="form-group">
-            <label for="kategori_id">Kategori</label>
-            <select class="form-control" id="kategori_id" name="kategori_id" required>
+            <label for="id_kategori">Kategori</label>
+            <select class="form-control" id="id_kategori" name="id_kategori" required>
                 @foreach($kategoris as $kategori)
-                    <option value="{{ $kategori->id }}" @if($barang->kategori_id == $kategori->id) selected @endif>{{ $kategori->nama }}</option>
+                    <option value="{{ $kategori->id }}" @if($barang->id_kategori == $kategori->id) selected @endif>{{ $kategori->nama }}</option>
                 @endforeach
             </select>
         </div>
         <div class="form-group">
-            <label for="supplier_id">Supplier</label>
-            <select class="form-control" id="supplier_id" name="supplier_id" required>
+            <label for="id_supplier">Supplier</label>
+            <select class="form-control" id="id_supplier" name="id_supplier" required>
                 @foreach($suppliers as $supplier)
-                    <option value="{{ $supplier->id }}" @if($barang->supplier_id == $supplier->id) selected @endif>{{ $supplier->nama }}</option>
+                    <option value="{{ $supplier->id }}" @if($barang->id_supplier == $supplier->id) selected @endif>{{ $supplier->nama }}</option>
                 @endforeach
             </select>
         </div>

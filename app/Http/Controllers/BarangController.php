@@ -6,22 +6,28 @@ use App\Models\Barang;
 use App\Models\Kategori;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BarangController extends Controller
 {
     public function index()
     {
-        $barangs = Barang::all();
-        return view('barang.index', compact('barangs'));
+        $barangs = Barang::select('barangs.*', 'kategoris.nama as nama_kategori', 'suppliers.nama as nama_supplier')
+                    ->join('suppliers', 'barangs.id_supplier', '=', 'suppliers.id')
+                    ->join('kategoris', 'barangs.id_kategori', '=', 'kategoris.id')
+                    ->get();
+        return view('barangs.index', compact('barangs'));
     }
+
 
     public function create()
     {
         $kategoris = Kategori::all();
         $suppliers = Supplier::all();
-        return view('barang.create', compact('kategoris', 'suppliers'));
+        return view('barangs.create', compact('kategoris', 'suppliers'));
     }
 
+    
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -29,24 +35,19 @@ class BarangController extends Controller
             'deskripsi' => 'nullable',
             'stok' => 'required|integer',
             'harga' => 'required|numeric',
-            'kategori_id' => 'required|exists:kategoris,id',
-            'supplier_id' => 'required|exists:suppliers,id',
+            'id_kategori' => 'required|exists:kategoris,id',
+            'id_supplier' => 'required|exists:suppliers,id',
         ]);
 
         Barang::create($validated);
-        return redirect()->route('barang.index');
-    }
-
-    public function show(Barang $barang)
-    {
-        return view('barang.show', compact('barang'));
+        return redirect()->route('barangs.index')->with('success', 'Barang berhasil ditambahkan.');;
     }
 
     public function edit(Barang $barang)
     {
         $kategoris = Kategori::all();
         $suppliers = Supplier::all();
-        return view('barang.edit', compact('barang', 'kategoris', 'suppliers'));
+        return view('barangs.edit', compact('barang', 'kategoris', 'suppliers'));
     }
 
     public function update(Request $request, Barang $barang)
@@ -56,17 +57,18 @@ class BarangController extends Controller
             'deskripsi' => 'nullable',
             'stok' => 'required|integer',
             'harga' => 'required|numeric',
-            'kategori_id' => 'required|exists:kategoris,id',
-            'supplier_id' => 'required|exists:suppliers,id',
+            'id_kategori' => 'required|exists:kategoris,id',
+            'id_supplier' => 'required|exists:suppliers,id',
         ]);
 
         $barang->update($validated);
-        return redirect()->route('barang.index');
+        return redirect()->route('barangs.index')->with('success', 'Barang berhasil diubah.');;
     }
 
     public function destroy(Barang $barang)
     {
         $barang->delete();
-        return redirect()->route('barang.index');
+        return redirect()->route('barangs.index')->with('success', 'Barang berhasil dihapus.');;
     }
 }
+

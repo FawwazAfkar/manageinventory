@@ -10,54 +10,51 @@ class PenerimaanController extends Controller
 {
     public function index()
     {
-        $penerimaans = Penerimaan::all();
-        return view('penerimaan.index', compact('penerimaans'));
+        $penerimaans = Penerimaan::select('penerimaans.*', 'barangs.nama as nama_barang')
+                    ->join('barangs', 'penerimaans.id_barang', '=', 'barangs.id')
+                    ->get();
+        return view('penerimaans.index', compact('penerimaans'));
     }
 
     public function create()
     {
         $barangs = Barang::all();
-        return view('penerimaan.create', compact('barangs'));
+        return view('penerimaans.create', compact('barangs'));
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'barang_id' => 'required|exists:barangs,id',
+            'id_barang' => 'required|exists:barangs,id',
             'jumlah' => 'required|integer',
             'tanggal' => 'required|date',
         ]);
 
         Penerimaan::create($validated);
-        return redirect()->route('penerimaan.index');
-    }
-
-    public function show(Penerimaan $penerimaan)
-    {
-        return view('penerimaan.show', compact('penerimaan'));
+        return redirect()->route('penerimaans.index')->with('success', 'Penerimaan berhasil ditambahkan.');;;
     }
 
     public function edit(Penerimaan $penerimaan)
     {
         $barangs = Barang::all();
-        return view('penerimaan.edit', compact('penerimaan', 'barangs'));
+        return view('penerimaans.edit', compact('penerimaans', 'barangs'));
     }
 
     public function update(Request $request, Penerimaan $penerimaan)
     {
         $validated = $request->validate([
-            'barang_id' => 'required|exists:barangs,id',
+            'id_barang' => 'required|exists:barangs,id',
             'jumlah' => 'required|integer',
             'tanggal' => 'required|date',
         ]);
 
         $penerimaan->update($validated);
-        return redirect()->route('penerimaan.index');
+        return redirect()->route('penerimaans.index')->with('success', 'Penerimaan berhasil diubah');;;
     }
 
     public function destroy(Penerimaan $penerimaan)
     {
         $penerimaan->delete();
-        return redirect()->route('penerimaan.index');
+        return redirect()->route('penerimaans.index')->with('success', 'Penerimaan berhasil dihapus.');;;
     }
 }
