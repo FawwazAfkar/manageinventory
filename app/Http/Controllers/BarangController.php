@@ -12,14 +12,14 @@ class BarangController extends Controller
     public function index()
     {
         $barangs = Barang::all();
-        return view('barangs.index', compact('barangs'));
+        return view('barang.index', compact('barangs'));
     }
 
     public function create()
     {
         $kategoris = Kategori::all();
         $suppliers = Supplier::all();
-        return view('barangs.create', compact('kategoris', 'suppliers'));
+        return view('barang.create', compact('kategoris', 'suppliers'));
     }
 
     public function store(Request $request)
@@ -29,24 +29,24 @@ class BarangController extends Controller
             'deskripsi' => 'nullable',
             'stok' => 'required|integer',
             'harga' => 'required|numeric',
-            'id_kategori' => 'required|exists:kategoris,id_kategori',
-            'id_kategori' => 'required|exists:suppliers,id_kategori',
+            'kategori_id' => 'required|exists:kategoris,id',
+            'supplier_id' => 'required|exists:suppliers,id',
         ]);
 
         Barang::create($validated);
-        return redirect()->route('barangs.index');
+        return redirect()->route('barang.index');
     }
 
-    public function view(Barang $barang)
+    public function show(Barang $barang)
     {
-        return view('barangs.view', compact('barang'));
+        return view('barang.show', compact('barang'));
     }
 
     public function edit(Barang $barang)
     {
         $kategoris = Kategori::all();
         $suppliers = Supplier::all();
-        return view('barangs.edit', compact('barang', 'kategoris', 'suppliers'));
+        return view('barang.edit', compact('barang', 'kategoris', 'suppliers'));
     }
 
     public function update(Request $request, Barang $barang)
@@ -56,17 +56,17 @@ class BarangController extends Controller
             'deskripsi' => 'nullable',
             'stok' => 'required|integer',
             'harga' => 'required|numeric',
-            'id_kategori' => 'required|exists:kategoris,id_kategori',
-            'id_supplier' => 'required|exists:suppliers,id_supplier',
+            'kategori_id' => 'required|exists:kategoris,id',
+            'supplier_id' => 'required|exists:suppliers,id',
         ]);
 
         $barang->update($validated);
-        return redirect()->route('barangs.index');
+        return redirect()->route('barang.index');
     }
 
     public function destroy(Barang $barang)
     {
         $barang->delete();
-        return redirect()->route('barangs.index');
+        return redirect()->route('barang.index');
     }
 }

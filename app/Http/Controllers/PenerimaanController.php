@@ -11,53 +11,53 @@ class PenerimaanController extends Controller
     public function index()
     {
         $penerimaans = Penerimaan::all();
-        return view('penerimaans.index', compact('penerimaans'));
+        return view('penerimaan.index', compact('penerimaans'));
     }
 
     public function create()
     {
         $barangs = Barang::all();
-        return view('penerimaans.create', compact('barangs'));
+        return view('penerimaan.create', compact('barangs'));
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'id_barang' => 'required|exists:barangs,id_barang',
+            'barang_id' => 'required|exists:barangs,id',
             'jumlah' => 'required|integer',
             'tanggal' => 'required|date',
         ]);
 
         Penerimaan::create($validated);
-        return redirect()->route('penerimaans.index');
+        return redirect()->route('penerimaan.index');
     }
 
-    public function view(Penerimaan $penerimaan)
+    public function show(Penerimaan $penerimaan)
     {
-        return view('penerimaans.view', compact('penerimaan'));
+        return view('penerimaan.show', compact('penerimaan'));
     }
 
     public function edit(Penerimaan $penerimaan)
     {
         $barangs = Barang::all();
-        return view('penerimaans.edit', compact('penerimaan', 'barangs'));
+        return view('penerimaan.edit', compact('penerimaan', 'barangs'));
     }
 
     public function update(Request $request, Penerimaan $penerimaan)
     {
         $validated = $request->validate([
-            'id_barang' => 'required|exists:barangs,id_barang',
+            'barang_id' => 'required|exists:barangs,id',
             'jumlah' => 'required|integer',
             'tanggal' => 'required|date',
         ]);
 
         $penerimaan->update($validated);
-        return redirect()->route('penerimaans.index');
+        return redirect()->route('penerimaan.index');
     }
 
     public function destroy(Penerimaan $penerimaan)
     {
         $penerimaan->delete();
-        return redirect()->route('penerimaans.index');
+        return redirect()->route('penerimaan.index');
     }
 }

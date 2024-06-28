@@ -20,7 +20,6 @@
                     <td>{{ $penerimaan->jumlah }}</td>
                     <td>{{ $penerimaan->tanggal }}</td>
                     <td>
-                        <a href="{{ route('penerimaans.show', $penerimaan) }}" class="btn btn-info">Lihat</a>
                         <a href="{{ route('penerimaans.edit', $penerimaan) }}" class="btn btn-warning">Edit</a>
                         <form action="{{ route('penerimaans.destroy', $penerimaan) }}" method="POST" style="display:inline-block;">
                             @csrf

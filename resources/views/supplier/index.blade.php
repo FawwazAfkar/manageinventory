@@ -20,7 +20,6 @@
                     <td>{{ $supplier->alamat }}</td>
                     <td>{{ $supplier->telepon }}</td>
                     <td>
-                        <a href="{{ route('suppliers.show', $supplier) }}" class="btn btn-info">Lihat</a>
                         <a href="{{ route('suppliers.edit', $supplier) }}" class="btn btn-warning">Edit</a>
                         <form action="{{ route('suppliers.destroy', $supplier) }}" method="POST" style="display:inline-block;">
                             @csrf

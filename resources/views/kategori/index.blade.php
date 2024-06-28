@@ -16,7 +16,6 @@
                 <tr>
                     <td>{{ $kategori->nama }}</td>
                     <td>
-                        <a href="{{ route('kategoris.show', $kategori) }}" class="btn btn-info">Lihat</a>
                         <a href="{{ route('kategoris.edit', $kategori) }}" class="btn btn-warning">Edit</a>
                         <form action="{{ route('kategoris.destroy', $kategori) }}" method="POST" style="display:inline-block;">
                             @csrf

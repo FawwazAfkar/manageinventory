@@ -25,6 +25,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::resource('barangs', BarangController::class)->middleware('auth');
+    Route::resource('suppliers', SupplierController::class)->middleware('auth');
+    Route::resource('penerimaans', PenerimaanController::class)->middleware('auth');
+    Route::resource('kategoris', KategoriController::class)->middleware('auth');
 });
 
 require __DIR__.'/auth.php';
