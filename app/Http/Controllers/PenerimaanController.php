@@ -37,7 +37,7 @@ class PenerimaanController extends Controller
     public function edit(Penerimaan $penerimaan)
     {
         $barangs = Barang::all();
-        return view('penerimaans.edit', compact('penerimaans', 'barangs'));
+        return view('penerimaans.edit', compact('penerimaan', 'barangs'));
     }
 
     public function update(Request $request, Penerimaan $penerimaan)

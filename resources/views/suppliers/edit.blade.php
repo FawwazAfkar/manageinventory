@@ -1,24 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h1>Edit Supplier</h1>
-    <form action="{{ route('suppliers.update', $supplier) }}" method="POST">
+<div class="container mt-4">
+    <h2>{{ isset($supplier) ? 'Edit Supplier' : 'Tambah Supplier' }}</h2>
+    <form action="{{ isset($supplier) ? route('suppliers.update', $supplier->id) : route('suppliers.store') }}" method="POST">
         @csrf
-        @method('PUT')
-        <div class="form-group">
-            <label for="nama">Nama</label>
-            <input type="text" class="form-control" id="nama" name="nama" value="{{ $supplier->nama }}" required>
+        @if (isset($supplier)) @method('PUT') @endif
+
+        <div class="mb-3">
+            <label for="nama" class="form-label">Nama</label>
+            <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" value="{{ old('nama', $supplier->nama ?? '') }}">
+            @error('nama')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
-        <div class="form-group">
-            <label for="alamat">Alamat</label>
-            <input type="text" class="form-control" id="alamat" name="alamat" value="{{ $supplier->alamat }}" required>
+
+        <div class="mb-3">
+            <label for="alamat" class="form-label">Alamat</label>
+            <textarea class="form-control @error('alamat') is-invalid @enderror" id="alamat" name="alamat">{{ old('alamat', $supplier->alamat ?? '') }}</textarea>
+            @error('alamat')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
-        <div class="form-group">
-            <label for="telepon">Telepon</label>
-            <input type="text" class="form-control" id="telepon" name="telepon" value="{{ $supplier->telepon }}" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Simpan</button>
+
+        <button type="submit" class="btn btn-primary">{{ isset($supplier) ? 'Update Supplier' : 'Tambah Supplier' }}</button>
     </form>
 </div>
 @endsection

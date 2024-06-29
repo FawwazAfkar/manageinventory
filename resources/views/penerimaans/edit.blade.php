@@ -22,7 +22,7 @@
             <label for="tanggal">Tanggal</label>
             <input type="date" class="form-control" id="tanggal" name="tanggal" value="{{ $penerimaan->tanggal }}" required>
         </div>
-        <button type="submit" class="btn btn-primary">Simpan</button>
+        <button type="submit" class="btn btn-primary mb-4">Simpan</button>
     </form>
 </div>
 @endsection

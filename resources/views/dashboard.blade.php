@@ -1,20 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h1>Dashboard</h1>
-    <div class="row">
-        <div class="col-md-3">
-            <a href="{{ route('barangs.index') }}" class="btn btn-primary btn-block">Manajemen Barang</a>
-        </div>
-        <div class="col-md-3">
-            <a href="{{ route('suppliers.index') }}" class="btn btn-primary btn-block">Manajemen Supplier</a>
-        </div>
-        <div class="col-md-3">
-            <a href="{{ route('penerimaans.index') }}" class="btn btn-primary btn-block">Manajemen Penerimaan</a>
-        </div>
-        <div class="col-md-3">
-            <a href="{{ route('kategoris.index') }}" class="btn btn-primary btn-block">Manajemen Kategori</a>
+<div class="py-12">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+            <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
+                <div class="mt-8 text-2xl">
+                    Selamat datang di Sistem Manajemen Inventaris
+                </div>
+
+                <div class="mt-6 text-gray-500">
+                    Ini adalah dashboard. Anda dapat navigasi ke bagian-bagian yang berbeda menggunakan menu pada navbar.
+                </div>
+            </div>
         </div>
     </div>
 </div>
